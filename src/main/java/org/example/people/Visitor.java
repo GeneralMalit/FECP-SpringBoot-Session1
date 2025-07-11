@@ -1,15 +1,15 @@
 package org.example.people;
 
+import org.example.ZooTicketing;
+
 import java.util.Scanner;
-
-
 
 public class Visitor extends People {
     public static Scanner scanner = new Scanner(System.in);
     private final int age;
-    private double ticketPrice;
     private String ticketCode;
     private boolean hasTicket;
+    ZooTicketing ticket = new ZooTicketing();
 
     public Visitor(String name, int age) {
         super(name, "Visitor");
@@ -21,8 +21,8 @@ public class Visitor extends People {
         return hasTicket;
     }
 
-    public void goToTicketShop() {
-        //
+    public void buyTicket() {
+        ticket.processTicketPurchasing();
     }
 
     public void visitorEntry() { //VISITOR ENTRY + GO TO ZOO
@@ -30,7 +30,7 @@ public class Visitor extends People {
         if (hasTicket) {
             System.out.print("Please enter your ticket number: ");
             String enteredCode = scanner.nextLine();
-            if (enteredCode.equals(this.ticketCode)) {
+            if (ticket.isTicketValid(enteredCode)) {
                 System.out.println("Ticket validated. Welcome to the Zoo, " + name + "!");
                 goToZoo();
             } else {

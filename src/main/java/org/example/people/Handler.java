@@ -1,5 +1,6 @@
 package org.example.people;
 
+import org.example.animals.*;
 import java.util.*;
 
 public class Handler extends People {
@@ -11,6 +12,9 @@ public class Handler extends People {
     }
 
     public void accessHandlerModule(Scanner scanner) {
+        System.out.println("\nThis is the handler module.");
+        System.out.println("Please implement the handler module.");
+
     }
 
 
