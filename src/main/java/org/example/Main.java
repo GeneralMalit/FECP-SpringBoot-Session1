@@ -151,6 +151,7 @@ public class Main {
             System.out.println(displayNum + ". Zoo Ticketing Module");
             displayToActualModuleMap.put(displayNum, 2);
             displayNum++;
+
         }
 
         if (allowedModules.contains(3)) {
