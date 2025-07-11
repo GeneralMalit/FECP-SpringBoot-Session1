@@ -11,6 +11,7 @@ import java.util.Set;
 public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
+    private static boolean zooOpen = false; // Initial state: zoo is closed
 
     // Define access permissions for each role based on the image (e.g., Visitor - 23 means modules 2 and 3)
     private static final Set<Integer> VISITOR_MODULES = new HashSet<>(Arrays.asList(2, 3));
@@ -108,7 +109,9 @@ public class Main {
                         break;
                     case 3:
                         System.out.println("\n\n [WARNING] ZOO MODULE NOT YET IMPLEMENTED. \n\n");
-                        //zoo module
+                        //we currently have an zooOpen boolena attribute, this is still unused, decide if the zooOpen boolean attribute is to be used here or in the zoo module.
+
+                        //call zoo module
                         break;
                     default:
                         System.out.println("Unexpected module ID: " + actualModuleId);
@@ -154,7 +157,6 @@ public class Main {
     }
 
 
-
     /**
      * Helper method to get integer input from the user.
      * Handles NumberFormatException for invalid input.
@@ -167,5 +169,15 @@ public class Main {
             System.out.println("Invalid input. Please enter a number.");
             return -1; // invalid choice to re-prompt
         }
+    }
+
+    public static void setZooOpen(boolean status) {
+        zooOpen = status;
+        System.out.println("Zoo status updated: Zoo is now " + (zooOpen ? "OPEN" : "CLOSED"));
+    }
+
+
+    public static boolean isZooOpen() {
+        return zooOpen;
     }
 }
