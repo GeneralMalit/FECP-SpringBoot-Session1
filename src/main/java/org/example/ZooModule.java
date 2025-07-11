@@ -4,6 +4,7 @@ import java.util.*;
 
 public class ZooModule {
     private Scanner scanner;
+    boolean isOpen = true;
 
     public ZooModule() {
         scanner = new Scanner(System.in);
