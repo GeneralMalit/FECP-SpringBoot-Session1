@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class ZooTicketing {
     private final Scanner scanner = new Scanner(System.in);
-    private Set<Integer> generatedTicketCodes = new HashSet<>();
+    private Set<String> generatedTicketCodes = new HashSet<>();
 
     public void processTicketPurchasing(){
         printPricingAndActivities();
@@ -33,8 +33,8 @@ public class ZooTicketing {
 
         System.out.println("Proceed with purchase? (yes/no)");
         String proceedToBuy = scanner.nextLine();
-        int ticketCode = generateTicketCode();
-        generatedTicketCodes.add(ticketCode);//add ticket codes to hashset
+        String ticketCode = "ZOO-".concat(String.valueOf(generateTicketCode()));
+        generatedTicketCodes.add("ticketCode");//add ticket codes to hashset
         System.out.println("Your ticket code is: ZOO-" + ticketCode);
 
         System.out.println("[Ticket added to system]");
@@ -70,16 +70,15 @@ public class ZooTicketing {
             return new String[]{"Senior", "50"};
     }
 
-    public boolean isTicketValid(int ticketCode){
-        System.out.println("Ticket Code is valid.");
+    public boolean isTicketValid(String ticketCode){//called by Main
         return generatedTicketCodes.contains(ticketCode);
     }
 
-    public Set<Integer> getGeneratedTicketCodes() {
+    public Set<String> getGeneratedTicketCodes() {
         return generatedTicketCodes;
     }
 
-    public void setGeneratedTicketCodes(Set<Integer> generatedTicketCodes) {
+    public void setGeneratedTicketCodes(Set<String> generatedTicketCodes) {
         this.generatedTicketCodes = generatedTicketCodes;
     }
 
