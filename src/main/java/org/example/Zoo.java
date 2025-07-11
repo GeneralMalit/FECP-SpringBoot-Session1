@@ -1,6 +1,5 @@
 package org.example;
 
-
-//placeholder
+//idk if my implementation is correct, but this should contain the zoo state.
 public class Zoo {
 }
