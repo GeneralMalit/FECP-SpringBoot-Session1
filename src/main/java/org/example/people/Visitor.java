@@ -2,8 +2,6 @@ package org.example.people;
 
 import java.util.Scanner;
 
-
-
 public class Visitor extends People {
     public static Scanner scanner = new Scanner(System.in);
     private final int age;

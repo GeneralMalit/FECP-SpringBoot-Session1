@@ -15,7 +15,7 @@ public class AdminManager extends People {
         // Placeholder for actual logic for closing the zoo
     }
 
-    public void setupZooStaff() {
+    public static void setupZooStaff() { //recently made static
         System.out.println("\n--- Setting up Zoo Staff ---");
         System.out.println("Haven't implemented it yet.");
         //creating/updating staff objects in a database or collection.
