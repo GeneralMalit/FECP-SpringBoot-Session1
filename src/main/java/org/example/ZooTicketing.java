@@ -1,12 +1,13 @@
 package org.example;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
 public class ZooTicketing {
     private final Scanner scanner = new Scanner(System.in);
-    private Set<Integer> generatedTicketNumbers = new HashSet<>();
+    private Set<Integer> generatedTicketCodes = new HashSet<>();
 
     public void processTicketPurchasing(){
         printPricingAndActivities();
@@ -32,7 +33,16 @@ public class ZooTicketing {
 
         System.out.println("Proceed with purchase? (yes/no)");
         String proceedToBuy = scanner.nextLine();
+        int ticketCode = generateTicketCode();
+        generatedTicketCodes.add(ticketCode);//add ticket codes to hashset
+        System.out.println("Your ticket code is: ZOO-" + ticketCode);
 
+        System.out.println("[Ticket added to system]");
+    }
+
+    private int generateTicketCode() {
+        Random random = new Random();
+        return random.nextInt(10000);
     }
 
     public void printPricingAndActivities(){
@@ -60,12 +70,17 @@ public class ZooTicketing {
             return new String[]{"Senior", "50"};
     }
 
-    public Set<Integer> getGeneratedTicketNumbers() {
-        return generatedTicketNumbers;
+    public boolean isTicketValid(int ticketCode){
+        System.out.println("Ticket Code is valid.");
+        return generatedTicketCodes.contains(ticketCode);
     }
 
-    public void setGeneratedTicketNumbers(Set<Integer> generatedTicketNumbers) {
-        this.generatedTicketNumbers = generatedTicketNumbers;
+    public Set<Integer> getGeneratedTicketCodes() {
+        return generatedTicketCodes;
+    }
+
+    public void setGeneratedTicketCodes(Set<Integer> generatedTicketCodes) {
+        this.generatedTicketCodes = generatedTicketCodes;
     }
 
 }
