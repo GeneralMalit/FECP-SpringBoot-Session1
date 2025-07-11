@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class ZooTicketing {
     private final Scanner scanner = new Scanner(System.in);
-    private Set<String> generatedTicketCodes = new HashSet<>();
+    private static Set<String> generatedTicketCodes = new HashSet<>();
 
     public void processTicketPurchasing(){
         printPricingAndActivities();
@@ -78,7 +78,7 @@ public class ZooTicketing {
             return new String[]{"Senior", "50"};
     }
 
-    public boolean isTicketValid(String ticketCode){//called by Main
+    public static boolean isTicketValid(String ticketCode){//called by Main
         return generatedTicketCodes.contains(ticketCode);
     }
 

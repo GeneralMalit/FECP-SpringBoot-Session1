@@ -101,12 +101,23 @@ public class Main {
                         System.out.println("Entering Zoo Ticketing Module...");
                         if (roleName.equals("Visitor")) {
                             //zoo ticketing module
-                            System.out.println("[NOTICE] TICKETING FOR VISITORS NOT YET IMPLEMENTED");
+                            ZooTicketing zooTicketing = new ZooTicketing();
+                            zooTicketing.processTicketPurchasing();
                         } else {
-                            System.out.println("[NOTICE] TICKETING FOR STAFF NOT IMPLEMENTED (not even sure if its supposed to be..)");
+                            System.out.println("\nOnly Visitors are allowed for Zoo Ticketing!");
                         }
                         break;
                     case 3:
+                        if(roleName.equals("Visitor")){
+                            System.out.println("=== Visitor Entry ===");
+                            System.out.print("Enter your ticket number: ");
+                            String ticketCode = scanner.nextLine();
+                            if(!ZooTicketing.isTicketValid(ticketCode)){
+                                System.out.println("Ticket code is invalid!");
+                                return;
+                            }
+                            System.out.println("Welcome to Zoo!");
+                        }
                         System.out.println("\n\n [WARNING] ZOO MODULE NOT YET IMPLEMENTED. \n\n");
                         //zoo module
                         break;
