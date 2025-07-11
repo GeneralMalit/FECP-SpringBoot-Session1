@@ -43,7 +43,6 @@ public class ZooAdminModule {
         } else {
             System.out.println("Login failed. Exiting Admin Module.");
         }
-        // scanner.close(); // <-- THIS LINE MUST BE REMOVED OR COMMENTED OUT
     }
 
 
@@ -86,7 +85,7 @@ public class ZooAdminModule {
             System.out.print("Enter your choice: ");
 
             try {
-                choice = Integer.parseInt(scanner.nextLine());
+                choice = Integer.parseInt(scanner.nextLine()); // Use nextLine()
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number.");
                 choice = -1; // Set to an invalid choice to repeat loop
@@ -95,7 +94,7 @@ public class ZooAdminModule {
 
             switch (choice) {
                 case 1:
-                    AdminManager.setupZooStaff(); // Call setup method
+                    AdminManager.setupZooStaff(scanner); // Pass the scanner here
                     break;
                 case 2:
                     manager.openZoo();
@@ -122,7 +121,7 @@ public class ZooAdminModule {
             System.out.print("Enter your choice: ");
 
             try {
-                choice = Integer.parseInt(scanner.nextLine());
+                choice = Integer.parseInt(scanner.nextLine()); // Use nextLine()
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number.");
                 choice = -1; // Set to an invalid choice to repeat loop
