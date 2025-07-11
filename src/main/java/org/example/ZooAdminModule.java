@@ -13,14 +13,21 @@ public class ZooAdminModule {
     private static final String HANDLER_USERNAME = "handler";
     private static final String HANDLER_PASSWORD = "handlerpass";
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in); // ZooAdminModule still uses its own scanner
     private static People loggedInUser = null; // Stores the currently logged-in user object
+
+    public ZooAdminModule() {
+    }
+
 
     /**
      * Main entry point for the Zoo Admin Module.
      */
     public static void main(String[] args) {
         runAdminModule();
+        // If this main method is run directly, scanner.close() here.
+        // But when called from ZooSystemMain, it must NOT close the scanner, the development will assume scanner at Main
+        // For consistency in a multi-module system, Main will manage System.in.
     }
 
     public static void runAdminModule() {
@@ -36,7 +43,6 @@ public class ZooAdminModule {
         } else {
             System.out.println("Login failed. Exiting Admin Module.");
         }
-        scanner.close();
     }
 
 
@@ -79,7 +85,7 @@ public class ZooAdminModule {
             System.out.print("Enter your choice: ");
 
             try {
-                choice = Integer.parseInt(scanner.nextLine());
+                choice = Integer.parseInt(scanner.nextLine()); // Use nextLine()
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number.");
                 choice = -1; // Set to an invalid choice to repeat loop
@@ -88,10 +94,10 @@ public class ZooAdminModule {
 
             switch (choice) {
                 case 1:
-                    AdminManager.setupZooStaff(); // Call setup method
+                    AdminManager.setupZooStaff(scanner); // Pass the scanner here
                     break;
                 case 2:
-                    manager.openZoo(); 
+                    manager.openZoo();
                     break;
                 case 3:
                     manager.closeZoo();
@@ -115,7 +121,7 @@ public class ZooAdminModule {
             System.out.print("Enter your choice: ");
 
             try {
-                choice = Integer.parseInt(scanner.nextLine());
+                choice = Integer.parseInt(scanner.nextLine()); // Use nextLine()
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number.");
                 choice = -1; // Set to an invalid choice to repeat loop

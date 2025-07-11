@@ -1,23 +1,82 @@
 package org.example.people;
+import org.example.ZooModule;
+import java.util.LinkedHashMap; // Use LinkedHashMap to preserve insertion order
+import java.util.Map;
+import java.util.Scanner; // Import Scanner
 
 public class AdminManager extends People {
+
+    // Static map to store staff roles and their names
+    private static final Map<String, String> zooStaff = new LinkedHashMap<>();
+
     public AdminManager(String name) {
         super(name, "Admin/Manager");
+        // Initialize the manager's name in the staff map if not already set
+        if (!zooStaff.containsKey("Manager")) {
+            zooStaff.put("Manager", name);
+        }
+    }
+
+    public static void setupZooStaff(Scanner scanner) { // Accept Scanner as parameter
+        System.out.println("\n--- Setup Zoo Staff ---");
+
+        if (!zooStaff.isEmpty()) {
+            System.out.println("Current Zoo Staff configuration:");
+            displayZooStaff();
+            System.out.print("Would you like to update the existing staff? (yes/no): ");
+            String updateChoice = scanner.nextLine().trim().toLowerCase();
+            if (!updateChoice.equals("yes")) {
+                System.out.println("Staff setup/update cancelled.");
+                return;
+            }
+        } else {
+            System.out.print("Would you like to set up zoo staff? (yes/no): ");
+            String setupChoice = scanner.nextLine().trim().toLowerCase();
+            if (!setupChoice.equals("yes")) {
+                System.out.println("Staff setup cancelled.");
+                return;
+            }
+        }
+
+        System.out.println("\nPlease enter names for the following roles:");
+
+        // Define the roles to be set up.  Manager is predefined but should be updated.
+        String[] rolesToSetup = {"Manager", "Ticket Vendor", "Shop Vendor", "Veterinarian", "Handler"};
+
+        for (String role : rolesToSetup) {
+            System.out.print("Enter name for " + role + ": ");
+            String name = scanner.nextLine().trim();
+            if (!name.isEmpty()) {
+                zooStaff.put(role, name);
+            } else {
+                System.out.println("Name cannot be empty for " + role + ". Skipping this role / keeping previous");
+            }
+        }
+
+        System.out.println("\nZoo Staff setup complete.");
+        displayZooStaff();
+    }
+
+    // Helper method to display current staff
+    private static void displayZooStaff() {
+        if (zooStaff.isEmpty()) {
+            System.out.println("No staff members have been set up yet.");
+            return;
+        }
+        System.out.println("--- Current Zoo Staff ---");
+        for (Map.Entry<String, String> entry : zooStaff.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+        System.out.println("-------------------------");
     }
 
     public void openZoo() {
-        System.out.println(name + " (Admin/Manager) is opening the Zoo for visitors.");
-        // Placeholder for actual logic for opening the zoo
+        System.out.println(getName() + " is opening the zoo.");
+        ZooModule.setIsOpen(true); // Update the static status in ZooModule
     }
 
     public void closeZoo() {
-        System.out.println(name + " (Admin/Manager) is closing the Zoo to visitors.");
-        // Placeholder for actual logic for closing the zoo
-    }
-
-    public static void setupZooStaff() { //recently made static
-        System.out.println("\n--- Setting up Zoo Staff ---");
-        System.out.println("Haven't implemented it yet.");
-        //creating/updating staff objects in a database or collection.
+        System.out.println(getName() + " is closing the zoo.");
+        ZooModule.setIsOpen(false); // Update the static status in ZooModule
     }
 }
