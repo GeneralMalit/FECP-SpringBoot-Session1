@@ -1,4 +1,4 @@
-package org.example;
+package org.example.people;
 
 public abstract class People {
     protected String name;
