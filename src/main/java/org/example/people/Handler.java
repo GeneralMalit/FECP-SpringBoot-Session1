@@ -1,5 +1,7 @@
 package org.example.people;
 
+import org.example.animals.*;
+
 import java.util.*;
 
 public class Handler extends People {
