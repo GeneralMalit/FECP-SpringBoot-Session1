@@ -23,6 +23,7 @@ public class ZooModule {
             switch (choice) {
                 case 1 -> {
                     // Visit Enclosure
+                    // zooEnclosure()
                 }
 
                 case 2 -> {
