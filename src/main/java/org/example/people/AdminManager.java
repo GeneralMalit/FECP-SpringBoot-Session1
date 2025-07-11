@@ -1,4 +1,4 @@
-package org.example;
+package org.example.people;
 
 public class AdminManager extends People {
     public AdminManager(String name) {
