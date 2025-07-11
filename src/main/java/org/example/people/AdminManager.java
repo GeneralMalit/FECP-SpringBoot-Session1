@@ -1,5 +1,5 @@
 package org.example.people;
-import org.example.Main;
+import org.example.ZooModule; // Import ZooModule to access its static methods
 
 public class AdminManager extends People {
     public AdminManager(String name) {
@@ -10,14 +10,13 @@ public class AdminManager extends People {
         System.out.println("Setting up zoo staff (functionality not yet implemented).");
     }
 
-    // These methods are instance methods in ZooAdminModule: manager.openZoo(); manager.closeZoo();
     public void openZoo() {
         System.out.println(getName() + " is opening the zoo.");
-        Main.setZooOpen(true); // Update the static status in Main
+        ZooModule.setIsOpen(true); // Update the static status in ZooModule
     }
 
     public void closeZoo() {
         System.out.println(getName() + " is closing the zoo.");
-        Main.setZooOpen(false); // Update the static status in Main
+        ZooModule.setIsOpen(false); // Update the static status in ZooModule
     }
 }
