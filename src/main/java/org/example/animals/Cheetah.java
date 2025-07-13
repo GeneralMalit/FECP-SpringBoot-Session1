@@ -4,7 +4,7 @@ public class Cheetah extends Animal implements Feline {
     public Cheetah (String name) {
         super(name);
     }
-
+    public Cheetah(){}
     @Override
     public void makeSound() {
         System.out.println(getName() + " roars! 🐆");
