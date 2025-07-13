@@ -12,7 +12,7 @@ public class ZooTicketing {
     public void processTicketPurchasing(){
         printPricingAndActivities();
 
-        System.out.print("Would you like to buy a ticket? (yes/no): "); //FIX HERE because this treats any other response as yes too...
+        System.out.print("Would you like to buy a ticket? (yes/no): ");
         String purchase = scanner.nextLine();
         if(!purchase.equalsIgnoreCase("yes")){ // Only proceed if the answer is explicitly "yes"
             return;
@@ -37,9 +37,9 @@ public class ZooTicketing {
 
 
 
-        System.out.print("Proceed with purchase? (yes/no): "); //FIX HERE because this treats any other response as yes too...
+        System.out.print("Proceed with purchase? (yes/no): ");
         String proceedToBuy = scanner.nextLine();
-        if(!proceedToBuy.equalsIgnoreCase("yes")){ // Only proceed if the answer is explicitly "yes"
+        if(!proceedToBuy.equalsIgnoreCase("yes")){ // Only proceeds if the answer is explicitly "yes"
             System.out.println("Visitor did not proceed to buy a ticket.");
             return;
         }
