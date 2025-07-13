@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Hospital {
 
-    void viewSickAnimals(Animal[] sickAnimals){
+    public void viewSickAnimals(List<Animal> sickAnimals){
         System.out.println("Sick Animals Currently in Hospital:");
 
         for (Animal animal : sickAnimals){
@@ -22,7 +22,7 @@ public class Hospital {
         }
     }
 
-    void attendScienceLecture(Veterinarian vet){
+    public void attendScienceLecture(Veterinarian vet){
         System.out.printf("Dr. %s gives a science lecture on animal health and conservation.\n", vet);
     }
 

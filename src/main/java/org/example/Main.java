@@ -1,12 +1,13 @@
 package org.example;
 
+import org.example.animals.*;
+import org.example.people.Handler;
 import org.example.people.Visitor;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedHashMap; // Use LinkedHashMap to preserve insertion order for display
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+
+import java.security.spec.RSAOtherPrimeInfo;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class Main {
 
@@ -20,8 +21,9 @@ public class Main {
     private static final Set<Integer> HANDLER_MODULES = new HashSet<>(Arrays.asList(1, 2, 3));
     private static final Set<Integer> VENDOR_MODULES = new HashSet<>(Arrays.asList(3));
     private static final Set<Integer> VETERINARIAN_MODULES = new HashSet<>(Arrays.asList(3));
-
+    public static final Map<String, String> ANIMAL_NAMES = new LinkedHashMap<>();
     public static void main(String[] args) {
+        initializeNames();
         runZooSystem();
     }
 
@@ -63,6 +65,7 @@ public class Main {
 
         scanner.close();
     }
+
 
     private static void displayStartingPointMenu() {
         System.out.println("--- ZOO MAIN MENU ---");
@@ -195,5 +198,27 @@ public class Main {
 
     public static boolean isZooOpen() {
         return zooOpen;
+    }
+
+    public static void initializeNames(){
+        Animal cheetah = new Cheetah("Dash");
+        Animal elephant = new Elephant("Trunky");
+        Animal falcon = new Falcon("Skye");
+        Animal hippo = new Hippo("Bubbles");
+        Animal lion = new Lion("Simba");
+        Animal owl = new Owl("Hoots");
+        Animal parrot = new Parrot("Chatter");
+        Animal rhino = new Rhino("Tank");
+        Animal tiger = new Tiger("Stripes");
+        ANIMAL_NAMES.put("Cheetah", cheetah.getName());
+        ANIMAL_NAMES.put("Elephant", elephant.getName());
+        ANIMAL_NAMES.put("Falcon", falcon.getName());
+        ANIMAL_NAMES.put("Hippo", hippo.getName());
+        ANIMAL_NAMES.put("Lion", lion.getName());
+        ANIMAL_NAMES.put("Owl", owl.getName());
+        ANIMAL_NAMES.put("Parrot", parrot.getName());
+        ANIMAL_NAMES.put("Rhino", rhino.getName());
+        ANIMAL_NAMES.put("Tiger", tiger.getName());
+        System.out.println(ANIMAL_NAMES.toString());
     }
 }
