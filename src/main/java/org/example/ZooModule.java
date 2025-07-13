@@ -2,10 +2,7 @@ package org.example;
 
 import org.example.animals.Animal;
 import org.example.animals.Pachyderm;
-import org.example.buildings.BirdEnclosure;
-import org.example.buildings.FelineEnclosure;
-import org.example.buildings.PachydermEnclosure;
-import org.example.buildings.Shop;
+import org.example.buildings.*;
 
 import java.util.*;
 
@@ -55,6 +52,7 @@ public class ZooModule {
 
                 case 3 -> {
                     // Visit Hospital
+                    zooHospital();
                 }
 
                 default -> {
@@ -167,6 +165,7 @@ public class ZooModule {
 
     private void zooHospital() {
         scanner = new Scanner(System.in);
+        Hospital hospital = new Hospital();
         int choice;
 
         do {

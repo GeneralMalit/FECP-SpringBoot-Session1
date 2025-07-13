@@ -1,8 +1,8 @@
 package org.example.people;
 import org.example.ZooModule;
-import java.util.LinkedHashMap; // Use LinkedHashMap to preserve insertion order
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Scanner; // Import Scanner
+import java.util.Scanner;
 
 import static org.example.Main.zoo;
 
