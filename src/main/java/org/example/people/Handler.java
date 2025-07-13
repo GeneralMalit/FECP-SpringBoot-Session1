@@ -41,8 +41,7 @@ public class Handler extends People {
 
     public void accessHandlerModule(Scanner scanner) {
         int choose;
-        System.out.print("Enter your name (Handler): \n");
-        String handlerName = scanner.nextLine();
+        String handlerName = AdminManager.getStaffName("Handler");
         System.out.println("Welcome, Handler " + handlerName + "!\n");
         Handler handler = new Handler(handlerName);
         List<Map.Entry<String, String>> entries = new ArrayList<>(Main.ANIMAL_NAMES.entrySet());
