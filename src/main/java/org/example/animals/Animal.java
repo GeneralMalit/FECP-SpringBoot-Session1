@@ -13,6 +13,10 @@ public abstract class Animal {
         this.name = name;
     }
 
+    public Animal(){
+
+    }
+
     public void eat() {};
     public void sleep() {};
     public abstract void roam();

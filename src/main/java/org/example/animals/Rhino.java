@@ -4,6 +4,9 @@ public class Rhino extends Animal implements Pachyderm {
     public Rhino (String name) {
         super(name);
     }
+    public Rhino(){
+
+    }
 
     @Override
     public void makeSound() {

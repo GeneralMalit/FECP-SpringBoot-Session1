@@ -1,5 +1,12 @@
 package org.example;
 
+import org.example.animals.Animal;
+import org.example.animals.Pachyderm;
+import org.example.buildings.BirdEnclosure;
+import org.example.buildings.FelineEnclosure;
+import org.example.buildings.PachydermEnclosure;
+import org.example.buildings.Shop;
+
 import java.util.*;
 
 public class ZooModule {
@@ -11,7 +18,7 @@ public class ZooModule {
         int choice;
 
         do {
-            System.out.println("What would you like to do?");
+            System.out.println("\nWhat would you like to do?");
             System.out.println("1. Visit Enclosure");
             System.out.println("2. Visit Shop");
             System.out.println("3. Visit Hospital");
@@ -23,9 +30,12 @@ public class ZooModule {
             switch (choice) {
                 case 1 -> {
                     // Visit Enclosure
+                    zooEnclosure();
                 }
 
                 case 2 -> {
+                    Shop shop = new Shop();
+                    shop.zooShop();
                     // Visit Shop
                 }
 
@@ -43,12 +53,14 @@ public class ZooModule {
     }
 
 
-    private void zooEnclosure() {
+    public void zooEnclosure() {
         scanner = new Scanner(System.in);
         int choice;
-
+        String animalType;
+        String species;
+        String feedAnimal;
         do {
-            System.out.println("=== Zoo Enclosure ===");
+            System.out.println("\n=== Zoo Enclosure ===");
             System.out.println("Choose Enclosure");
             System.out.println("1. Pachyderm");
             System.out.println("2. Feline");
@@ -57,19 +69,48 @@ public class ZooModule {
 
             System.out.print("Choose an option: ");
             choice = scanner.nextInt();
-
+            scanner.nextLine();
             switch (choice) {
                 case 1 -> {
                     // go to pachyderm enclosure
+                    System.out.println("Choose animal type (Rhino, Elephant, Hippo): ");
+                    animalType = scanner.nextLine();
+                    species = "Pachyderm";
+                    PachydermEnclosure pachydermEnclosure = new PachydermEnclosure(species, animalType);
+                    System.out.println("Would you like to feed " + pachydermEnclosure.getAnimalType() + "? (yes/no)");
+                    feedAnimal = scanner.nextLine();
+                    if(feedAnimal.equalsIgnoreCase("yes")){
+                        System.out.println(animalType + " is eating.");
+                    }
+                    getAnimalActions(animalType);
                 }
 
                 case 2 -> {
                     // go to feline enclosure
-
+                    System.out.println("Choose animal type (Tiger, Lion, Cheetah): ");
+                    animalType = scanner.nextLine();
+                    species = "Feline";
+                    FelineEnclosure felineEnclosure = new FelineEnclosure(species, animalType);
+                    System.out.println("Would you like to feed " + felineEnclosure.getAnimalType() + "? (yes/no)");
+                    feedAnimal = scanner.nextLine();
+                    if(feedAnimal.equalsIgnoreCase("yes")){
+                        System.out.println("\n" + animalType + " is eating.");
+                    }
+                    getAnimalActions(animalType);
                 }
 
                 case 3 -> {
                     // go to bird enclosure
+                    System.out.println("Choose animal type (Parrot, Falcon, Owl): ");
+                    animalType = scanner.nextLine();
+                    species = "Feline";
+                    BirdEnclosure birdEnclosure = new BirdEnclosure(species, animalType);
+                    System.out.println("Would you like to feed " + birdEnclosure.getAnimalType() + "? (yes/no)");
+                    feedAnimal = scanner.nextLine();
+                    if(feedAnimal.equalsIgnoreCase("yes")){
+                        System.out.println(animalType + " is eating.");
+                    }
+                    getAnimalActions(animalType);
                 }
 
                 default -> {
@@ -80,79 +121,15 @@ public class ZooModule {
         } while (choice != 4);
     }
 
-    private void zooShop() {
-        scanner = new Scanner(System.in);
-
-        List<String> availableProducts = Arrays.asList("Soft Drink", "Popcorn", "Plush Toy", "Keychain");
-
-        HashMap<String, Integer> availableProductPrices = new HashMap<>();
-        availableProductPrices.put("Soft Drink", 30);
-        availableProductPrices.put("Popcorn", 50);
-        availableProductPrices.put("Plush Toy", 120);
-        availableProductPrices.put("Keychain", 45);
-
-        int choice;
-        int index = 1;
-
-        System.out.println("=== Zoo Shop ===");
-        System.out.println("Available Products");
-        for (int i = 0; i < availableProducts.size(); i++) {
-            String productName = availableProducts.get(i);
-            System.out.printf("%d. %s – ₱%d%n", i + 1, productName, availableProductPrices.get(productName));
-        }
-
-        System.out.print("Enter the numbers of the items you want to buy (separate the numbers by a space): ");
-        String productSelected = scanner.next();
-
-        String[] productsSelected = productSelected.trim().split("\\s+");
-
-        // no duplicate items, only one of each
-        Set<String> selectedItems = new LinkedHashSet<>();
-        int total = 0;
-
-        for (String product : productsSelected) {
-            try {
-                int productNumber = Integer.parseInt(product) - 1;
-                if (productNumber >= 0 && productNumber < availableProducts.size()) {
-                    String selectedProduct = availableProducts.get(productNumber);
-                    if (!selectedItems.contains(selectedProduct)) {
-                        selectedItems.add(selectedProduct);
-                        total += availableProductPrices.get(selectedProduct);
-                    }
-                } else {
-                    System.out.printf("Invalid selection: %s%n", product);
-                }
-            } catch (NumberFormatException e) {
-                System.out.printf("Invalid input: %s%n", product);
-            }
-        }
-
-        // Show selected items
-        if (selectedItems.isEmpty()) {
-            System.out.println("\nNo valid items selected.");
-            return;
-        }
-
-        System.out.println("\nSelected:");
-        for (String item : selectedItems) {
-            System.out.printf("%s (₱%d)%n", item, availableProductPrices.get(item));
-        }
-
-        System.out.printf("\nTotal: ₱%d%n", total);
-
-        // Confirm checkout
-        System.out.print("\nProceed to checkout? (yes/no): ");
-        String confirm = scanner.nextLine().trim().toLowerCase();
-
-        if (confirm.equals("yes")) {
-            System.out.println("\nPayment successful!");
-            System.out.println("Receipt:");
-            for (String item : selectedItems) {
-                System.out.printf("- %s: ₱%d%n", item, availableProductPrices.get(item));
-            }
-            System.out.printf("Total Paid: ₱%d%n", total);
-        } else {
-            System.out.println("\nCheckout cancelled.");
+    private void getAnimalActions(String animalType) {
+        String className = "org.example.animals." + animalType;
+        try{
+            Animal animal = (Animal) Class.forName(className).getDeclaredConstructor().newInstance();
+            animal.setName(animalType);
+            animal.makeSound();
+        }catch (Exception e){
+            System.out.println("Animal type does not exist");
+            e.printStackTrace();
         }
     }
 

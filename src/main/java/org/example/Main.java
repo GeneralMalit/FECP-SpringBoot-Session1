@@ -22,7 +22,8 @@ public class Main {
     private static final Set<Integer> VETERINARIAN_MODULES = new HashSet<>(Arrays.asList(3));
 
     public static void main(String[] args) {
-        runZooSystem();
+        ZooModule zooModule = new ZooModule();
+//        runZooSystem();
     }
 
     public static void runZooSystem() {
