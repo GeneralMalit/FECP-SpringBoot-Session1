@@ -6,7 +6,7 @@ public class ZooModule {
     private Scanner scanner;
     boolean isOpen = true;
 
-    public ZooModule() {
+    public void runZooModule() {
         scanner = new Scanner(System.in);
         int choice;
 
