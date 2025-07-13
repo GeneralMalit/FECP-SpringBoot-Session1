@@ -2,10 +2,9 @@ package org.example;
 
 import org.example.animals.Animal;
 import org.example.animals.Pachyderm;
-import org.example.buildings.BirdEnclosure;
-import org.example.buildings.FelineEnclosure;
-import org.example.buildings.PachydermEnclosure;
-import org.example.buildings.Shop;
+import org.example.buildings.*;
+import org.example.people.Handler;
+import org.example.people.Veterinarian;
 
 import java.util.*;
 
@@ -54,6 +53,8 @@ public class ZooModule {
                 }
 
                 case 3 -> {
+
+                    zooHospital();
                     // Visit Hospital
                 }
 
@@ -148,6 +149,8 @@ public class ZooModule {
     }
 
     private void zooHospital() {
+        Hospital hospital = new Hospital();
+        Veterinarian vet = new Veterinarian("Dr. Ellie");
         scanner = new Scanner(System.in);
         int choice;
 
@@ -162,23 +165,28 @@ public class ZooModule {
 
             System.out.print("Choose an option: ");
             choice = scanner.nextInt();
-
+            scanner.nextLine();
             switch (choice) {
                 case 1 -> {
-                    // view sick animals
+                    hospital.viewSickAnimals(Handler.sickAnimals);
                 }
 
                 case 2 -> {
-                    // view healed animals
+                    vet.viewHealedAnimals();
                 }
 
                 case 3 -> {
-                    // attend science lecture
+                    hospital.attendScienceLecture(vet);
                 }
 
                 case 4 -> {
-                    // heal animals
-                    // check role
+                    System.out.println("Are you a Vet? (yes/no)");
+                    String answer = scanner.nextLine();
+                    if(answer.equalsIgnoreCase("yes")){
+                        vet.healAnimals(Handler.sickAnimals, vet);
+                    }else{
+                        System.out.println("Only vet can heal animals!");
+                    }
                 }
                 default -> {
                     System.out.println("Invalid option. Please choose a number from 1-5.");
