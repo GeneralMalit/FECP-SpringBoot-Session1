@@ -114,7 +114,6 @@ public class Main {
                         break;
                     case 3:
                         //zooOpen turned to isOpen boolean in ZooModule, only being called by AdminManager
-                        System.out.println("\n\n[WARNING] ZOO MODULE NOT YET FULLY IMPLEMENTED. \n\n");
 
                         if(roleName.equals("Visitor")){
                             System.out.println("=== Visitor Entry ===");
