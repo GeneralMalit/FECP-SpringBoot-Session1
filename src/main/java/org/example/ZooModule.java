@@ -60,6 +60,7 @@ public class ZooModule {
                 default -> {
                     // exit
                     System.out.println("Invalid option. Please choose a number from 1-4.");
+                    return;
                 }
             }
         } while (choice != 4);
@@ -148,6 +149,7 @@ public class ZooModule {
 
                 default -> {
                     System.out.println("Invalid option. Please choose a number from 1-4.");
+                    return;
                 }
             }
 

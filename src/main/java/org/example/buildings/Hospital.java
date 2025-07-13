@@ -23,11 +23,11 @@ public class Hospital {
     }
 
     public void attendScienceLecture(Veterinarian vet){
-        System.out.printf("Dr. %s gives a science lecture on animal health and conservation.\n", vet);
+        System.out.printf("Dr. %s gives a science lecture on animal health and conservation.\n", vet.getName());
     }
 
     void healAnimals(Animal[] sickAnimals, List<Animal> healedAnimals, Veterinarian vet){
-        System.out.printf("Dr. %s begins healing sick animals...\n", vet);
+        System.out.printf("Dr. %s begins healing sick animals...\n", vet.getName());
 
         for (Animal animal : sickAnimals){
             animal.setHealthy(true);
