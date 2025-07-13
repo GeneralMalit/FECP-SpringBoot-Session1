@@ -89,6 +89,12 @@ public class ZooModule {
                     // go to pachyderm enclosure
                     System.out.println("Choose animal type (Rhino, Elephant, Hippo): ");
                     animalType = scanner.nextLine();
+                    if (!animalType.equalsIgnoreCase("Rhino") &&
+                            !animalType.equalsIgnoreCase("Elephant") &&
+                            !animalType.equalsIgnoreCase("Hippo")) {
+                        System.out.println("Invalid animal!");
+                        return;
+                    }
                     species = "Pachyderm";
                     PachydermEnclosure pachydermEnclosure = new PachydermEnclosure(species, animalType);
                     System.out.println("Would you like to feed " + pachydermEnclosure.getAnimalType() + "? (yes/no)");
@@ -103,6 +109,12 @@ public class ZooModule {
                     // go to feline enclosure
                     System.out.println("Choose animal type (Tiger, Lion, Cheetah): ");
                     animalType = scanner.nextLine();
+                    if (!animalType.equalsIgnoreCase("Tiger") &&
+                            !animalType.equalsIgnoreCase("Lion") &&
+                            !animalType.equalsIgnoreCase("Cheetah")) {
+                        System.out.println("Invalid animal!");
+                        return;
+                    }
                     species = "Feline";
                     FelineEnclosure felineEnclosure = new FelineEnclosure(species, animalType);
                     System.out.println("Would you like to feed " + felineEnclosure.getAnimalType() + "? (yes/no)");
@@ -113,10 +125,16 @@ public class ZooModule {
                     getAnimalActions(animalType);
                 }
 
-                case 3 -> { //FIX HERE -g
+                case 3 -> {
                     // go to bird enclosure
                     System.out.println("Choose animal type (Parrot, Falcon, Owl): ");
                     animalType = scanner.nextLine();
+                    if (!animalType.equalsIgnoreCase("Parrot") &&
+                            !animalType.equalsIgnoreCase("Falcon") &&
+                            !animalType.equalsIgnoreCase("Owl")) {
+                        System.out.println("Invalid animal!");
+                        return; // Exit the current method if invalid animal is chosen
+                    }
                     species = "Bird";
                     BirdEnclosure birdEnclosure = new BirdEnclosure(species, animalType);
                     System.out.println("Would you like to feed " + birdEnclosure.getAnimalType() + "? (yes/no)");
