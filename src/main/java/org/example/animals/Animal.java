@@ -17,8 +17,12 @@ public abstract class Animal {
 
     }
 
-    public void eat() {};
-    public void sleep() {};
+    public void eat() {
+        System.out.println(getName() + " is eating.");
+    };
+    public void sleep() {
+        System.out.println(getName() + " is sleeping.");
+    };
     public abstract void roam();
     public abstract void makeSound();
 
