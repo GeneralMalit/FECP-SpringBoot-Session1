@@ -113,7 +113,7 @@ public class ZooModule {
                     getAnimalActions(animalType);
                 }
 
-                case 3 -> {
+                case 3 -> { //FIX HERE -g
                     // go to bird enclosure
                     System.out.println("Choose animal type (Parrot, Falcon, Owl): ");
                     animalType = scanner.nextLine();

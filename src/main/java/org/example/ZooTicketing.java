@@ -11,9 +11,10 @@ public class ZooTicketing {
 
     public void processTicketPurchasing(){
         printPricingAndActivities();
-        System.out.print("Would you like to buy a ticket? (yes/no): ");
+
+        System.out.print("Would you like to buy a ticket? (yes/no): "); //FIX HERE because this treats any other response as yes too...
         String purchase = scanner.nextLine();
-        if(purchase.equalsIgnoreCase("no")){
+        if(!purchase.equalsIgnoreCase("yes")){ // Only proceed if the answer is explicitly "yes"
             return;
         }
         System.out.print("Enter your name: ");
@@ -34,9 +35,11 @@ public class ZooTicketing {
         System.out.println("Hi " + name.toUpperCase() + ", you qualify for a " + ticketType + " ticket");
         System.out.printf("Ticket Price: ₱%.2f%n", ticketPrice);
 
-        System.out.print("Proceed with purchase? (yes/no): ");
+
+
+        System.out.print("Proceed with purchase? (yes/no): "); //FIX HERE because this treats any other response as yes too...
         String proceedToBuy = scanner.nextLine();
-        if(proceedToBuy.equalsIgnoreCase("no")){
+        if(!proceedToBuy.equalsIgnoreCase("yes")){ // Only proceed if the answer is explicitly "yes"
             System.out.println("Visitor did not proceed to buy a ticket.");
             return;
         }
