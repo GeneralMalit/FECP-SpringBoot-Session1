@@ -1,6 +1,8 @@
 package org.example.people;
 import org.example.Main;
 
+import static org.example.Main.zoo;
+
 public class AdminManager extends People {
     public AdminManager(String name) {
         super(name, "Admin/Manager");
@@ -13,11 +15,11 @@ public class AdminManager extends People {
     // These methods are instance methods in ZooAdminModule: manager.openZoo(); manager.closeZoo();
     public void openZoo() {
         System.out.println(getName() + " is opening the zoo.");
-        Main.setZooOpen(true); // Update the static status in Main
+        zoo.setZoo(true); // Update the static status in Main
     }
 
     public void closeZoo() {
         System.out.println(getName() + " is closing the zoo.");
-        Main.setZooOpen(false); // Update the static status in Main
+        zoo.setZoo(false); // Update the static status in Main
     }
 }

@@ -13,8 +13,22 @@ public class ZooModule {
     private Scanner scanner;
     boolean isOpen = true;
 
-    public ZooModule() {
+    public void setZoo(boolean open) {
+        this.isOpen = open;
+    }
+
+    public ZooModule(boolean isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public void runZooModule() {
         scanner = new Scanner(System.in);
+
+        if(!isOpen){
+            System.out.println("The zoo is still not open, please come back later.\n");
+            return;
+        }
+
         int choice;
 
         do {
