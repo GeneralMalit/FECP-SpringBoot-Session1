@@ -24,10 +24,10 @@ public class ZooModule {
         scanner = new Scanner(System.in);
 
         if(!isOpen){
-            System.out.println("The zoo is still not open, please come back later.\n");
+            System.out.println("\nThe zoo is closed, please come back later.\n");
             return;
         }
-
+        System.out.println("Entering Zoo Ticketing Module...");
         int choice;
 
         do {

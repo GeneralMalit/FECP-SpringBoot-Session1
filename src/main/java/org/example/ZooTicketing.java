@@ -5,18 +5,31 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import static org.example.Main.zoo;
+
 public class ZooTicketing {
     private final Scanner scanner = new Scanner(System.in);
     private static Set<String> generatedTicketCodes = new HashSet<>();
 
     public void processTicketPurchasing(){
+
+        if(!zoo.isOpen){
+            System.out.println("The zoo is still not open, please come back later.\n");
+            return;
+        }
+
         printPricingAndActivities();
 
         System.out.print("Would you like to buy a ticket? (yes/no): ");
         String purchase = scanner.nextLine();
-        if(!purchase.equalsIgnoreCase("yes")){ // Only proceed if the answer is explicitly "yes"
+        if (purchase.equalsIgnoreCase("no")) {
+            System.out.println("Visitor did not proceed to buy a ticket.");
+            return;
+        } else if (!purchase.equalsIgnoreCase("yes")) { // Handles anything not "yes" or "no"
+            System.out.println("Invalid input. Visitor did not proceed to buy a ticket.");
             return;
         }
+
         System.out.print("Enter your name: ");
         String name = scanner.nextLine();
 
@@ -35,14 +48,16 @@ public class ZooTicketing {
         System.out.println("Hi " + name.toUpperCase() + ", you qualify for a " + ticketType + " ticket");
         System.out.printf("Ticket Price: ₱%.2f%n", ticketPrice);
 
-
-
         System.out.print("Proceed with purchase? (yes/no): ");
         String proceedToBuy = scanner.nextLine();
-        if(!proceedToBuy.equalsIgnoreCase("yes")){ // Only proceeds if the answer is explicitly "yes"
+        if (proceedToBuy.equalsIgnoreCase("no")) {
             System.out.println("Visitor did not proceed to buy a ticket.");
             return;
+        } else if (!proceedToBuy.equalsIgnoreCase("yes")) { // Handles anything not "yes" or "no"
+            System.out.println("Invalid input. Visitor did not proceed to buy a ticket.");
+            return;
         }
+
         String ticketCode = "ZOO-".concat(String.valueOf(generateTicketCode()));
         generatedTicketCodes.add(ticketCode);//add ticket codes to hashset
         System.out.println("Your ticket code is: " + ticketCode);

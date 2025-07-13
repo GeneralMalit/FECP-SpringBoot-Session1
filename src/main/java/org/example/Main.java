@@ -103,7 +103,7 @@ public class Main {
                         ZooAdminModule.runAdminModule();
                         break;
                     case 2:
-                        System.out.println("Entering Zoo Ticketing Module...");
+
                         if (roleName.equals("Visitor")) {
                             //zoo ticketing module
                             ZooTicketing zooTicketing = new ZooTicketing();
