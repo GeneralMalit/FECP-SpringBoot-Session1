@@ -117,7 +117,7 @@ public class ZooModule {
                     // go to bird enclosure
                     System.out.println("Choose animal type (Parrot, Falcon, Owl): ");
                     animalType = scanner.nextLine();
-                    species = "Feline";
+                    species = "Bird";
                     BirdEnclosure birdEnclosure = new BirdEnclosure(species, animalType);
                     System.out.println("Would you like to feed " + birdEnclosure.getAnimalType() + "? (yes/no)");
                     feedAnimal = scanner.nextLine();
