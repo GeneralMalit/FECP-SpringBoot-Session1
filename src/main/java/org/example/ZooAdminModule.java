@@ -95,7 +95,7 @@ public class ZooAdminModule {
 
             switch (choice) {
                 case 1:
-                    AdminManager.setupZooStaff(); // Call setup method
+                    AdminManager.setupZooStaff(scanner); // Call setup method
                     break;
                 case 2:
                     manager.openZoo();
