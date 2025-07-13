@@ -25,9 +25,6 @@ public class ZooAdminModule {
      */
     public static void main(String[] args) {
         runAdminModule();
-        // If this main method is run directly, scanner.close() here.
-        // But when called from ZooSystemMain, it must NOT close the scanner, the development will assume scanner at Main
-        // For consistency in a multi-module system, Main will manage System.in.
     }
 
     public static void runAdminModule() {
@@ -43,7 +40,7 @@ public class ZooAdminModule {
         } else {
             System.out.println("Login failed. Exiting Admin Module.");
         }
-        // scanner.close(); // <-- THIS LINE MUST BE REMOVED OR COMMENTED OUT
+        // scanner.close();
     }
 
 

@@ -1,7 +1,6 @@
 package org.example;
 
-import org.example.animals.Animal;
-import org.example.animals.Pachyderm;
+import org.example.animals.*;
 import org.example.buildings.*;
 import org.example.people.Handler;
 import org.example.people.Veterinarian;
@@ -54,8 +53,6 @@ public class ZooModule {
                 }
 
                 case 3 -> {
-
-                    zooHospital();
                     // Visit Hospital
                     zooHospital();
                 }
@@ -174,7 +171,6 @@ public class ZooModule {
         Hospital hospital = new Hospital();
         Veterinarian vet = new Veterinarian("Dr. Ellie");
         scanner = new Scanner(System.in);
-        Hospital hospital = new Hospital();
         int choice;
 
         do {
