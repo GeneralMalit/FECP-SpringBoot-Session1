@@ -161,12 +161,7 @@ public class ZooModule {
         String className = "org.example.animals." + animalType;
         try{
             Animal animal = (Animal) Class.forName(className).getDeclaredConstructor().newInstance();
-            String finalAnimalType = animalType;
-            Main.ANIMAL_NAMES.forEach((k, v) -> {
-                if(k.equalsIgnoreCase(finalAnimalType)){
-                    animal.setName(v);
-                }
-            });
+            animal.setName(Main.ANIMAL_NAMES.get(animalType));
             animal.eat();
             animal.makeSound();
         }catch (Exception e){
