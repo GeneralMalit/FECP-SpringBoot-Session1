@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ZooModule {
     private Scanner scanner;
-    boolean isOpen = true;
+    private static boolean isOpen = false; //changed to static to make it global.
 
     public ZooModule() {
         scanner = new Scanner(System.in);
@@ -45,7 +45,7 @@ public class ZooModule {
 
 
     private void zooEnclosure() {
-        scanner = new Scanner(System.in);
+        //removed scanner, its already in Main.
         int choice;
 
         do {
@@ -82,7 +82,7 @@ public class ZooModule {
     }
 
     private void zooShop() {
-        scanner = new Scanner(System.in);
+        //removed scanner, its already in Main.
 
         List<String> availableProducts = Arrays.asList("Soft Drink", "Popcorn", "Plush Toy", "Keychain");
 
@@ -158,7 +158,7 @@ public class ZooModule {
     }
 
     private void zooHospital() {
-        scanner = new Scanner(System.in);
+        //removed scanner, its already in Main.
         int choice;
 
         do {
@@ -195,6 +195,16 @@ public class ZooModule {
                 }
             }
         } while (choice !=5);
+    }
+
+    //get and set the zoo's open status
+    public static boolean getIsOpen() {
+        return isOpen;
+    }
+
+    public static void setIsOpen(boolean status) {
+        isOpen = status;
+        System.out.println("Zoo status (from ZooModule) updated: Zoo is now " + (isOpen ? "OPEN" : "CLOSED"));
     }
 
 
