@@ -4,7 +4,7 @@ public class Hippo extends Animal implements Pachyderm {
     public Hippo (String name) {
         super(name);
     }
-
+    public Hippo(){}
     @Override
     public void makeSound() {
         System.out.println(getName() + " honks! 🦛");

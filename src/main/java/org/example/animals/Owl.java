@@ -4,7 +4,7 @@ public class Owl extends Animal implements Bird {
     public Owl (String name) {
         super(name);
     }
-
+    public Owl(){}
     @Override
     public void makeSound() {
         System.out.println(getName() + " hoots! 🦉");

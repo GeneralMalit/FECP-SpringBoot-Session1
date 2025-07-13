@@ -4,6 +4,7 @@ public class Elephant extends Animal implements Pachyderm {
     public Elephant (String name) {
         super(name);
     }
+    public Elephant(){}
 
     @Override
     public void makeSound() {

@@ -41,7 +41,7 @@ public class ZooTicketing {
             return;
         }
         String ticketCode = "ZOO-".concat(String.valueOf(generateTicketCode()));
-        generatedTicketCodes.add("ticketCode");//add ticket codes to hashset
+        generatedTicketCodes.add(ticketCode);//add ticket codes to hashset
         System.out.println("Your ticket code is: " + ticketCode);
 
         System.out.println("[Ticket added to system]");
