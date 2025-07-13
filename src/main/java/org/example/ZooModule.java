@@ -155,10 +155,18 @@ public class ZooModule {
     }
 
     private void getAnimalActions(String animalType) {
+        //convert string to First case upper format
+        animalType = animalType.toLowerCase();
+        animalType = animalType.substring(0, 1).toUpperCase() + animalType.substring(1);
         String className = "org.example.animals." + animalType;
         try{
             Animal animal = (Animal) Class.forName(className).getDeclaredConstructor().newInstance();
-            animal.setName(animalType);
+            String finalAnimalType = animalType;
+            Main.ANIMAL_NAMES.forEach((k, v) -> {
+                if(k.equalsIgnoreCase(finalAnimalType)){
+                    animal.setName(v);
+                }
+            });
             animal.eat();
             animal.makeSound();
         }catch (Exception e){
