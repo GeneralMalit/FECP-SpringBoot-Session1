@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.animals.*;
 import org.example.buildings.*;
+import org.example.people.AdminManager;
 import org.example.people.Handler;
 import org.example.people.Veterinarian;
 
@@ -174,7 +175,9 @@ public class ZooModule {
 
     private void zooHospital() {
         Hospital hospital = new Hospital();
-        Veterinarian vet = new Veterinarian("Dr. Ellie");
+        String vetName = AdminManager.getStaffName("Veterinarian");
+        Veterinarian vet = new Veterinarian(vetName);
+
         scanner = new Scanner(System.in);
         int choice;
 

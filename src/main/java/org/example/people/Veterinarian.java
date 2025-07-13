@@ -33,7 +33,7 @@ public class Veterinarian extends People{
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String timeNow = now.format(formatter);
-        System.out.println(vet.getName() + " begins healing sick animals...");
+        System.out.println("Dr. " + vet.getName() + " begins healing sick animals...");
         for (Animal a : animal){
             System.out.printf("Healed %s%n", a.getName());
             System.out.printf("%s has been discharged and returned to enclosure.%n" , a.getName());

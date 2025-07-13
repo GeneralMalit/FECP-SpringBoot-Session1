@@ -82,4 +82,9 @@ public class AdminManager extends People {
         System.out.println(getName() + " is closing the zoo.");
         zoo.setZoo(false); // Update the static status in Main
     }
+
+    public static String getStaffName(String role) {
+        return zooStaff.get(role);
+    }
+
 }
