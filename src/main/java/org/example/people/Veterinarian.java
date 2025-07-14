@@ -25,6 +25,8 @@ public class Veterinarian extends People{
     }
 
     public void healAnimals(List<Animal> animal, Veterinarian vet){
+
+
         if(animal.isEmpty()){
             System.out.println("No sick animals");
             return;
@@ -33,6 +35,7 @@ public class Veterinarian extends People{
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String timeNow = now.format(formatter);
+
         System.out.println("Dr. " + vet.getName() + " begins healing sick animals...");
         for (Animal a : animal){
             System.out.printf("Healed %s%n", a.getName());
