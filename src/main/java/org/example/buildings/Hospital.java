@@ -23,6 +23,11 @@ public class Hospital {
     }
 
     public void attendScienceLecture(Veterinarian vet){
+        if(vet.getName() == null){
+            System.out.println("There is no one at the veterinary.");
+            return;
+        }
+
         System.out.printf("Dr. %s gives a science lecture on animal health and conservation.\n", vet.getName());
     }
 
