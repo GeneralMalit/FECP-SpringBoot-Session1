@@ -35,23 +35,23 @@ public class Main {
 
             switch (roleChoice) {
                 case 1: // Visitor
-                    System.out.println("You selected Visitor.");
+                    System.out.println("Selected role: Visitor.");
                     handleModules(VISITOR_MODULES, "Visitor");
                     break;
                 case 2: // Manager
-                    System.out.println("You selected Manager.");
+                    System.out.println("Selected role: Manager.");
                     handleModules(MANAGER_MODULES, "Manager");
                     break;
                 case 3: // Handler
-                    System.out.println("You selected Handler.");
+                    System.out.println("Selected role: Handler.");
                     handleModules(HANDLER_MODULES, "Handler");
                     break;
                 case 4: // Vendor
-                    System.out.println("You selected Vendor.");
+                    System.out.println("Selected role: Vendor.");
                     handleModules(VENDOR_MODULES, "Vendor");
                     break;
                 case 5: // Veterinarian
-                    System.out.println("You selected Veterinarian.");
+                    System.out.println("Selected role: Veterinarian.");
                     handleModules(VETERINARIAN_MODULES, "Veterinarian");
                     break;
                 case 6: // Exit
@@ -60,7 +60,7 @@ public class Main {
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-            System.out.println();
+            System.out.println(); // Add a newline for spacing after each role interaction
         } while (roleChoice != 6);
 
         scanner.close();
@@ -92,43 +92,38 @@ public class Main {
             if (currentMenuMap.containsKey(userChoice)) {
                 actualModuleId = currentMenuMap.get(userChoice);
 
-                if (actualModuleId == 4) {
+                if (actualModuleId == 4) { // Exit option
                     System.out.println("Exiting " + roleName + " modules. Returning to role selection.");
                     break;
                 }
 
                 switch (actualModuleId) {
                     case 1:
-                        System.out.println("Entering Zoo Admin Module (you will need to log in)...");
+                        System.out.println("Entering Zoo Admin Module...");
                         ZooAdminModule.runAdminModule();
                         break;
                     case 2:
-
                         if (roleName.equals("Visitor")) {
-                            //zoo ticketing module
                             ZooTicketing zooTicketing = new ZooTicketing();
                             zooTicketing.processTicketPurchasing();
                         } else {
-                            System.out.println("\nOnly Visitors are allowed for Zoo Ticketing!");
+                            System.out.println("Access denied: Only Visitors are allowed for Zoo Ticketing.");
                         }
                         break;
                     case 3:
-                        //zooOpen turned to isOpen boolean in ZooModule, only being called by AdminManager
-
                         if(roleName.equals("Visitor")){
                             System.out.println("=== Visitor Entry ===");
                             System.out.print("Enter your ticket number: ");
                             String ticketCode = scanner.nextLine();
                             if(!ZooTicketing.isTicketValid(ticketCode)){
                                 System.out.println("Ticket code is invalid!");
-                                return;
+                                // Optionally, return to module menu or main menu here
+                                return; // Exit current handleModules invocation to prevent entering zoo
                             }
                             System.out.println("Welcome to Zoo!");
                         }
-
                         //call zoo module
                         zoo.runZooModule();
-
                         break;
                     default:
                         System.out.println("Unexpected module ID: " + actualModuleId);
@@ -137,12 +132,12 @@ public class Main {
             } else {
                 System.out.println("Invalid choice. Please enter a number from the menu.");
             }
-            System.out.println();
+            System.out.println(); // Add a newline for spacing after each module interaction
         } while (true);
     }
 
     private static Map<Integer, Integer> displayZooModulesMenu(Set<Integer> allowedModules) {
-        System.out.println("\n--- Choose between: ---");
+        System.out.println("--- Choose a Module ---");
         Map<Integer, Integer> displayToActualModuleMap = new LinkedHashMap<>();
         int displayNum = 1;
 
@@ -161,11 +156,10 @@ public class Main {
         }
 
         if (allowedModules.contains(3)) {
-            System.out.println(displayNum + ". Zoo Module - ask first for ticket number");
+            System.out.println(displayNum + ". Zoo Module"); // Simplified description
             displayToActualModuleMap.put(displayNum, 3);
             displayNum++;
         }
-
 
         System.out.println(displayNum + ". Exit (back to role selection)");
         displayToActualModuleMap.put(displayNum, 4);
@@ -185,13 +179,13 @@ public class Main {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Please enter a number.");
-            return -1; // invalid choice to re-prompt
+            return -1; // Return an invalid choice to re-prompt
         }
     }
 
     public static void setZooOpen(boolean status) {
         zooOpen = status;
-        System.out.println("Zoo status updated: Zoo is now " + (zooOpen ? "OPEN" : "CLOSED"));
+        System.out.println("Zoo status updated: Zoo is now " + (zooOpen ? "OPEN" : "CLOSED") + ".");
     }
 
 
@@ -218,6 +212,6 @@ public class Main {
         ANIMAL_NAMES.put("Parrot", parrot.getName());
         ANIMAL_NAMES.put("Rhino", rhino.getName());
         ANIMAL_NAMES.put("Tiger", tiger.getName());
-        System.out.println(ANIMAL_NAMES.toString());
+        // System.out.println(ANIMAL_NAMES.toString()); // Removed
     }
 }
