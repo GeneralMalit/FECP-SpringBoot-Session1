@@ -13,8 +13,16 @@ public abstract class Animal {
         this.name = name;
     }
 
-    public void eat() {};
-    public void sleep() {};
+    public Animal(){
+
+    }
+
+    public void eat() {
+        System.out.println(getName() + " is eating.");
+    };
+    public void sleep() {
+        System.out.println(getName() + " is sleeping.");
+    };
     public abstract void roam();
     public abstract void makeSound();
 

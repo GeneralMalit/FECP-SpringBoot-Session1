@@ -13,7 +13,7 @@ public class ZooAdminModule {
     private static final String HANDLER_USERNAME = "handler";
     private static final String HANDLER_PASSWORD = "handlerpass";
 
-    private static final Scanner scanner = new Scanner(System.in); // ZooAdminModule still uses its own scanner
+    private static final Scanner scanner = new Scanner(System.in);
     private static People loggedInUser = null; // Stores the currently logged-in user object
 
     public ZooAdminModule() {
@@ -25,13 +25,10 @@ public class ZooAdminModule {
      */
     public static void main(String[] args) {
         runAdminModule();
-        // If this main method is run directly, scanner.close() here.
-        // But when called from ZooSystemMain, it must NOT close the scanner, the development will assume scanner at Main
-        // For consistency in a multi-module system, Main will manage System.in.
     }
 
     public static void runAdminModule() {
-        System.out.println("--- Welcome to the Zoo Admin Module ---");
+        System.out.println("\n--- Admin Module ---"); // Consistent header
         boolean loggedIn = login();
 
         if (loggedIn) {
@@ -43,13 +40,12 @@ public class ZooAdminModule {
         } else {
             System.out.println("Login failed. Exiting Admin Module.");
         }
-        // scanner.close(); // <-- THIS LINE MUST BE REMOVED OR COMMENTED OUT
     }
 
 
     private static boolean login() {
         int attempts = 0;
-        final int MAX_ATTEMPTS = 3; //for security purposes, add max attempts
+        final int MAX_ATTEMPTS = 3;
 
         while (attempts < MAX_ATTEMPTS) {
             System.out.print("Enter username: ");
@@ -59,18 +55,18 @@ public class ZooAdminModule {
 
             if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
                 loggedInUser = new AdminManager("AdminUser"); // generic admin
-                System.out.println("Admin login successful!");
+                System.out.println("Login successful for Admin.");
                 return true;
             } else if (username.equals(HANDLER_USERNAME) && password.equals(HANDLER_PASSWORD)) {
                 loggedInUser = new Handler("HandlerUser"); // generic handler
-                System.out.println("Handler login successful!");
+                System.out.println("Login successful for Handler.");
                 return true;
             } else {
                 System.out.println("Invalid username or password. Please try again.");
                 attempts++;
             }
         }
-        System.out.println("Too many failed login attempts. Account locked or module exiting.");
+        System.out.println("Too many failed login attempts. Exiting module.");
         return false;
     }
 
@@ -95,7 +91,7 @@ public class ZooAdminModule {
 
             switch (choice) {
                 case 1:
-                    AdminManager.setupZooStaff(); // Call setup method
+                    AdminManager.setupZooStaff(scanner);
                     break;
                 case 2:
                     manager.openZoo();
@@ -104,11 +100,12 @@ public class ZooAdminModule {
                     manager.closeZoo();
                     break;
                 case 4:
-                    System.out.println("Exiting Manager Menu. Goodbye, " + manager.getName() + "!");
+                    System.out.println("Exiting Manager Menu. Goodbye, " + manager.getName() + ".");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
+            System.out.println(); // Add a newline for spacing after each interaction
         } while (choice != 4);
     }
 
@@ -131,14 +128,15 @@ public class ZooAdminModule {
 
             switch (choice) {
                 case 1:
-                    handler.accessHandlerModule(scanner); // Call the instance method on the logged-in handler
+                    handler.accessHandlerModule(scanner);
                     break;
                 case 2:
-                    System.out.println("Exiting Handler Menu. Goodbye, " + handler.getName() + "!");
+                    System.out.println("Exiting Handler Menu. Goodbye, " + handler.getName() + ".");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
+            System.out.println(); // Add a newline for spacing after each interaction
         } while (choice != 2);
     }
 }

@@ -1,201 +1,224 @@
 package org.example;
 
+import org.example.animals.*;
+import org.example.buildings.*;
+import org.example.people.AdminManager;
+import org.example.people.Handler;
+import org.example.people.Veterinarian;
+
+
 import java.util.*;
 
 public class ZooModule {
     private Scanner scanner;
     boolean isOpen = true;
 
-    public ZooModule() {
-        scanner = new Scanner(System.in);
+    public void setZoo(boolean open) {
+        this.isOpen = open;
+    }
+
+    public ZooModule(boolean isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public void runZooModule() {
+        scanner = new Scanner(System.in); // Initialize scanner here
+
+        if(!isOpen){
+            System.out.println("\n--- Zoo Status ---"); // Consistent header
+            System.out.println("The zoo is currently closed. Please come back later.");
+            System.out.println(); // Add a newline for spacing
+            return;
+        }
+
+        System.out.println("\n--- Welcome to the Zoo ---"); // Consistent header
         int choice;
 
         do {
-            System.out.println("What would you like to do?");
+            System.out.println("\nWhat would you like to do?");
             System.out.println("1. Visit Enclosure");
             System.out.println("2. Visit Shop");
             System.out.println("3. Visit Hospital");
             System.out.println("4. Leave Zoo");
 
-            System.out.print("Choose an option: ");
-            choice = scanner.nextInt();
+            System.out.print("Enter your choice: ");
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // Consume invalid input
+                choice = -1; // Set to an invalid choice to repeat loop
+                continue;
+            }
 
             switch (choice) {
-                case 1 -> {
-                    // Visit Enclosure
-                    // zooEnclosure()
-                }
-
+                case 1 -> zooEnclosure();
                 case 2 -> {
-                    // Visit Shop
+                    Shop shop = new Shop();
+                    shop.zooShop();
                 }
-
-                case 3 -> {
-                    // Visit Hospital
-                }
-
-                default -> {
-                    // exit
-                    System.out.println("Invalid option. Please choose a number from 1-4.");
-                }
+                case 3 -> zooHospital();
+                case 4 -> System.out.println("Exiting the Zoo. Goodbye!"); // Professional exit message
+                default -> System.out.println("Invalid option. Please choose a number from 1 to 4.");
             }
+            System.out.println(); // Add a newline for spacing after each interaction
         } while (choice != 4);
-        System.out.println("You have left the zoo. 👋");
     }
 
 
-    private void zooEnclosure() {
-        scanner = new Scanner(System.in);
+    public void zooEnclosure() {
+        // scanner = new Scanner(System.in); // Scanner already initialized in runZooModule
         int choice;
+        String animalType;
+        String species;
+        String feedAnimal;
 
         do {
-            System.out.println("=== Zoo Enclosure ===");
-            System.out.println("Choose Enclosure");
-            System.out.println("1. Pachyderm");
-            System.out.println("2. Feline");
-            System.out.println("3. Bird");
+            System.out.println("\n--- Zoo Enclosure ---"); // Consistent header
+            System.out.println("Choose an Enclosure:");
+            System.out.println("1. Pachyderm Enclosure");
+            System.out.println("2. Feline Enclosure");
+            System.out.println("3. Bird Enclosure");
             System.out.println("4. Go Back");
 
-            System.out.print("Choose an option: ");
-            choice = scanner.nextInt();
+            System.out.print("Enter your choice: ");
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // Consume invalid input
+                choice = -1; // Set to an invalid choice to repeat loop
+                continue;
+            }
 
             switch (choice) {
                 case 1 -> {
-                    // go to pachyderm enclosure
+                    System.out.print("Enter animal type (Rhino, Elephant, Hippo): ");
+                    animalType = scanner.nextLine();
+                    if (!animalType.equalsIgnoreCase("Rhino") &&
+                            !animalType.equalsIgnoreCase("Elephant") &&
+                            !animalType.equalsIgnoreCase("Hippo")) {
+                        System.out.println("Invalid animal type selected.");
+                        continue; // Go back to enclosure menu
+                    }
+                    species = "Pachyderm";
+                    PachydermEnclosure pachydermEnclosure = new PachydermEnclosure(species, animalType);
+                    System.out.print("Would you like to feed " + pachydermEnclosure.getAnimalType() + "? (yes/no): ");
+                    feedAnimal = scanner.nextLine();
+                    if(feedAnimal.equalsIgnoreCase("yes")){
+                        getAnimalActions(animalType);
+                    }
+
                 }
 
                 case 2 -> {
-                    // go to feline enclosure
+                    System.out.print("Enter animal type (Tiger, Lion, Cheetah): ");
+                    animalType = scanner.nextLine();
+                    if (!animalType.equalsIgnoreCase("Tiger") &&
+                            !animalType.equalsIgnoreCase("Lion") &&
+                            !animalType.equalsIgnoreCase("Cheetah")) {
+                        System.out.println("Invalid animal type selected.");
+                        continue; // Go back to enclosure menu
+                    }
+                    species = "Feline";
+                    FelineEnclosure felineEnclosure = new FelineEnclosure(species, animalType);
+                    System.out.print("Would you like to feed " + felineEnclosure.getAnimalType() + "? (yes/no): ");
+                    feedAnimal = scanner.nextLine();
+                    if(feedAnimal.equalsIgnoreCase("yes")){
+                        getAnimalActions(animalType);
+                    }
 
                 }
 
                 case 3 -> {
-                    // go to bird enclosure
+                    System.out.print("Enter animal type (Parrot, Falcon, Owl): ");
+                    animalType = scanner.nextLine();
+                    if (!animalType.equalsIgnoreCase("Parrot") &&
+                            !animalType.equalsIgnoreCase("Falcon") &&
+                            !animalType.equalsIgnoreCase("Owl")) {
+                        System.out.println("Invalid animal type selected.");
+                        continue; // Go back to enclosure menu
+                    }
+                    species = "Bird";
+                    BirdEnclosure birdEnclosure = new BirdEnclosure(species, animalType);
+                    System.out.print("Would you like to feed " + birdEnclosure.getAnimalType() + "? (yes/no): ");
+                    feedAnimal = scanner.nextLine();
+                    if(feedAnimal.equalsIgnoreCase("yes")){
+                        getAnimalActions(animalType);
+                    }
+
                 }
 
-                default -> {
-                    System.out.println("Invalid option. Please choose a number from 1-4.");
-                }
+                case 4 -> System.out.println("Returning to main Zoo menu.");
+                default -> System.out.println("Invalid option. Please choose a number from 1 to 4.");
             }
-
+            System.out.println(); // Add a newline for spacing after each interaction
         } while (choice != 4);
     }
 
-    private void zooShop() {
-        scanner = new Scanner(System.in);
-
-        List<String> availableProducts = Arrays.asList("Soft Drink", "Popcorn", "Plush Toy", "Keychain");
-
-        HashMap<String, Integer> availableProductPrices = new HashMap<>();
-        availableProductPrices.put("Soft Drink", 30);
-        availableProductPrices.put("Popcorn", 50);
-        availableProductPrices.put("Plush Toy", 120);
-        availableProductPrices.put("Keychain", 45);
-
-        int choice;
-        int index = 1;
-
-        System.out.println("=== Zoo Shop ===");
-        System.out.println("Available Products");
-        for (int i = 0; i < availableProducts.size(); i++) {
-            String productName = availableProducts.get(i);
-            System.out.printf("%d. %s – ₱%d%n", i + 1, productName, availableProductPrices.get(productName));
-        }
-
-        System.out.print("Enter the numbers of the items you want to buy (separate the numbers by a space): ");
-        String productSelected = scanner.next();
-
-        String[] productsSelected = productSelected.trim().split("\\s+");
-
-        // no duplicate items, only one of each
-        Set<String> selectedItems = new LinkedHashSet<>();
-        int total = 0;
-
-        for (String product : productsSelected) {
-            try {
-                int productNumber = Integer.parseInt(product) - 1;
-                if (productNumber >= 0 && productNumber < availableProducts.size()) {
-                    String selectedProduct = availableProducts.get(productNumber);
-                    if (!selectedItems.contains(selectedProduct)) {
-                        selectedItems.add(selectedProduct);
-                        total += availableProductPrices.get(selectedProduct);
-                    }
-                } else {
-                    System.out.printf("Invalid selection: %s%n", product);
-                }
-            } catch (NumberFormatException e) {
-                System.out.printf("Invalid input: %s%n", product);
-            }
-        }
-
-        // Show selected items
-        if (selectedItems.isEmpty()) {
-            System.out.println("\nNo valid items selected.");
-            return;
-        }
-
-        System.out.println("\nSelected:");
-        for (String item : selectedItems) {
-            System.out.printf("%s (₱%d)%n", item, availableProductPrices.get(item));
-        }
-
-        System.out.printf("\nTotal: ₱%d%n", total);
-
-        // Confirm checkout
-        System.out.print("\nProceed to checkout? (yes/no): ");
-        String confirm = scanner.nextLine().trim().toLowerCase();
-
-        if (confirm.equals("yes")) {
-            System.out.println("\nPayment successful!");
-            System.out.println("Receipt:");
-            for (String item : selectedItems) {
-                System.out.printf("- %s: ₱%d%n", item, availableProductPrices.get(item));
-            }
-            System.out.printf("Total Paid: ₱%d%n", total);
-        } else {
-            System.out.println("\nCheckout cancelled.");
+    private void getAnimalActions(String animalType) {
+        // Convert string to First letter uppercase format
+        animalType = animalType.toLowerCase();
+        animalType = animalType.substring(0, 1).toUpperCase() + animalType.substring(1);
+        String className = "org.example.animals." + animalType;
+        try{
+            Animal animal = (Animal) Class.forName(className).getDeclaredConstructor().newInstance();
+            animal.setName(Main.ANIMAL_NAMES.get(animalType));
+            animal.eat();
+            animal.makeSound();
+        }catch (Exception e){
+            System.out.println("Error: Animal type not found or cannot be instantiated.");
+            // e.printStackTrace(); // Removed stack trace for cleaner output
         }
     }
 
     private void zooHospital() {
-        scanner = new Scanner(System.in);
+        Hospital hospital = new Hospital();
+        String vetName = AdminManager.getStaffName("Veterinarian");
+        Veterinarian vet = new Veterinarian(vetName);
+
+        // scanner = new Scanner(System.in); // Scanner already initialized
+
         int choice;
 
         do {
-
-            System.out.println("=== Zoo Visitor Hospital Monitor ===");
+            System.out.println("\n--- Zoo Hospital ---"); // Consistent header
             System.out.println("1. View Sick Animals");
             System.out.println("2. View Healed Animals");
             System.out.println("3. Attend Science Lecture");
-            System.out.println("4. Heal Animals (Veterinarian)");
+            System.out.println("4. Heal Animals (Veterinarian Access Only)");
             System.out.println("5. Exit");
 
-            System.out.print("Choose an option: ");
-            choice = scanner.nextInt();
+            System.out.print("Enter your choice: ");
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // Consume invalid input
+                choice = -1; // Set to an invalid choice to repeat loop
+                continue;
+            }
 
             switch (choice) {
-                case 1 -> {
-                    // view sick animals
-                }
-
-                case 2 -> {
-                    // view healed animals
-                }
-
-                case 3 -> {
-                    // attend science lecture
-                }
-
+                case 1 -> hospital.viewSickAnimals(Handler.sickAnimals);
+                case 2 -> vet.viewHealedAnimals();
+                case 3 -> hospital.attendScienceLecture(vet);
                 case 4 -> {
-                    // heal animals
-                    // check role
+                    System.out.print("Are you a Veterinarian? (yes/no): ");
+                    String answer = scanner.nextLine();
+                    if(answer.equalsIgnoreCase("yes")){
+                        vet.healAnimals(Handler.sickAnimals, vet);
+                    }else{
+                        System.out.println("Access denied: Only veterinarians can heal animals.");
+                    }
                 }
-                default -> {
-                    System.out.println("Invalid option. Please choose a number from 1-5.");
-                }
+                case 5 -> System.out.println("Returning to main Zoo menu.");
+                default -> System.out.println("Invalid option. Please choose a number from 1 to 5.");
             }
+            System.out.println(); // Add a newline for spacing after each interaction
         } while (choice !=5);
     }
-
-
 }

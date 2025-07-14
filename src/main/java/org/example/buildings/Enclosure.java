@@ -1,5 +1,7 @@
 package org.example.buildings;
 
+import org.example.animals.Animal;
+
 public class Enclosure {
 
     private String animalType;
@@ -27,20 +29,3 @@ public class Enclosure {
     }
 }
 
-class PachydermEnclosure extends Enclosure{
-    public PachydermEnclosure(String species, String animalType) {
-        super(species, animalType);
-    }
-}
-
-class FelineEnclosure extends Enclosure{
-    public FelineEnclosure(String species, String animalType) {
-        super(species, animalType);
-    }
-}
-
-class BirdEnclosure extends Enclosure{
-    public BirdEnclosure(String species, String animalType) {
-        super(species, animalType);
-    }
-}

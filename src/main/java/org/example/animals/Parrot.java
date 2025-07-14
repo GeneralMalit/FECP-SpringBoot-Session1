@@ -4,7 +4,7 @@ public class Parrot extends Animal implements Bird {
     public Parrot (String name) {
         super(name);
     }
-
+    public Parrot(){}
     @Override
     public void makeSound() {
         System.out.println(getName() + " squawks! 🦜");
